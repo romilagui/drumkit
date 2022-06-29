@@ -1,9 +1,20 @@
 // The button will trigger this function
+// Detecting Button Press
 var numberOfDrumButtons = document.querySelectorAll(".drum").length;
 for (var i = 0; i<numberOfDrumButtons; i++){
 document.querySelectorAll(".drum")[i].addEventListener("click", function () {
   var buttonInnerHTML = this.innerHTML;
-  switch (buttonInnerHTML) {
+  makeSound(buttonInnerHTML);
+  buttonAnimation(buttonInnerHTML);
+});
+// Detecting Keyboard Press
+document.addEventListener("keydown", function(event){
+  makeSound(event.key);
+  buttonAnimation(event.key);
+  //alert("Key was pressed!");
+});
+function makeSound(key) {
+  switch (key) {
     case "w":
       var tom1 = new Audio("tom-1.mp3");
       tom1.play();
@@ -35,11 +46,8 @@ document.querySelectorAll(".drum")[i].addEventListener("click", function () {
     default: console.log(buttonInnerHTML)
       break;
   }
-
-  // console.log(this.innerHTML);
-  // this.style.color = "white";
-});
-
 }
-
-// audio.play();
+function buttonAnimation(currentKey) {
+  var activeButton = document.querySelector("." + currentKey);
+}
+}
